@@ -13,7 +13,7 @@ module.exports = {
   },
 
   loading: { color: '#3B8070' },
- 
+
   buildModules: [
     '@nuxtjs/vuetify',
     '@nuxtjs/moment',
@@ -21,7 +21,8 @@ module.exports = {
 
   modules: [
     '@nuxtjs/axios',
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    'nuxt-lazy-load'
   ],
 
   bootstrapVue: {

@@ -4,7 +4,7 @@
       <v-card>
         <div class="card-header">
           <div class="user-info">
-            <img :src="base_url + item.user.profile_image_url" alt="">
+            <img :src="base_url + item.user.profile_image_url" alt="avatar" v-lazy-load>
             <div class="name">{{ item?.user.name }}</div>
             <div class="time">{{ $moment(item?.user.created_at).format("YYYY.M.D") }}</div>
           </div>
@@ -14,7 +14,8 @@
           <div class="content-title">{{ item.title }}</div>
           <div class="content-body">{{ item.body }}</div>
           <div class="image-container" v-if="item.image_count > 0">
-            <img v-for="(image, img_index) in item.images" :key="img_index" :src="base_url + image.image_url" alt="">
+            <img v-for="(image, img_index) in item.images" :key="img_index" :src="base_url + image.image_url"
+              v-lazy-load>
           </div>
         </div>
         <div class="card-footer">
@@ -58,7 +59,6 @@ export default {
       const response = await axios.get(this.url);
       this.Naeding = response.data.page.data;
       this.is_loading = false
-      console.log(response);
     },
     infiniteScrolling(entries, observer, isIntersecting) {
       this.is_loading = true
@@ -137,12 +137,12 @@ export default {
   cursor: pointer;
 }
 
-.content-title{
+.content-title {
   font-weight: 600;
   margin-bottom: 8px;
 }
 
-.content-body{
+.content-body {
   margin-bottom: 8px;
 }
 </style>
