@@ -3,7 +3,8 @@
     <!-- header  -->
     <div class="header">
       <v-container fluid grid-list-lg>
-        <b-input-group size="sm" class="mb-2">
+        <div class="logo">내딩</div>
+        <b-input-group size="sm" class="search-bar">
           <b-input-group-prepend is-text>
             <b-icon icon="search"></b-icon>
           </b-input-group-prepend>
@@ -58,6 +59,7 @@ export default {
 .header,
 .footer {
   position: fixed;
+  box-shadow: 0px 0px 1px 1px #d2d2d2;
 }
 
 .header {
@@ -65,11 +67,10 @@ export default {
   z-index: 2;
   background: white;
   width: 100%;
-  height: 65px;
 }
 
 .body {
-  margin: 70px 0;
+  margin: 46px 0;
 }
 
 .footer {
@@ -85,6 +86,40 @@ export default {
 }
 
 .footer .footer-icon {
-  padding: 0 5%;
+  text-align: center;
+  width: 20%;
+}
+
+.search-bar {
+  width: calc(100% - 60px);
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header .logo {
+  color: #ffcc03;
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.search-bar input.form-control,
+.search-bar .input-group-text {
+  background-color: #f5f5f5;
+  border-color: #f5f5f5;
+  color: #b1b1b5;
+}
+
+.search-bar input.form-control {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.search-bar .input-group-text {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 </style>

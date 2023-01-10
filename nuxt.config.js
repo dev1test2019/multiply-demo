@@ -31,6 +31,7 @@ module.exports = {
       'FormPlugin',
       'FormCheckboxPlugin',
       'FormInputPlugin',
+      'InputGroup',
       'FormRadioPlugin',
       'ToastPlugin',
       'ModalPlugin'
