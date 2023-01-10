@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="list-card">
     <v-flex v-for="(item, index) in Naeding" :key="index" class="main-card">
       <v-card>
         <div class="card-header">
@@ -25,8 +25,8 @@
         </div>
       </v-card>
     </v-flex>
-    <v-card v-if="active_infinity_scroll" v-intersect="infiniteScrolling"></v-card>
-    <div v-if="loading" class="loading-icon">
+    <v-card v-intersect="infiniteScrolling"></v-card>
+    <div v-if="is_loading" class="loading-icon">
       <b-icon icon="arrow-clockwise" animation="spin-pulse" font-scale="4"></b-icon>
     </div>
   </div>
@@ -42,8 +42,7 @@ export default {
       base_url: "http://naeding.com:444",
       Naeding: [],
       page: 1,
-      loading: false,
-      active_infinity_scroll: false
+      is_loading: true
     };
   },
   computed: {
@@ -52,26 +51,30 @@ export default {
     }
   },
   created() {
-    this.infiniteScrolling();
+    this.fetchData();
   },
   methods: {
+    async fetchData() {
+      const response = await axios.get(this.url);
+      this.Naeding = response.data.page.data;
+      this.is_loading = false
+    },
     infiniteScrolling(entries, observer, isIntersecting) {
-      this.loading = true
-      axios
-        .get(this.url)
-        .then(response => {
-          let result = response.data.page.data
-          result.forEach(item => this.Naeding.push(item));
-          this.loading = false
-          if (this.page == 1) {
-            this.active_infinity_scroll = true
-          }
-          this.page++;
-        })
-        .catch(err => {
-          console.log(err);
-          this.loading = false
-        });
+      if (isIntersecting) {
+        this.is_loading = true
+        this.page++;
+        axios
+          .get(this.url)
+          .then(response => {
+            let result = response.data.page.data
+            result.forEach(item => this.Naeding.push(item));
+            this.is_loading = false
+          })
+          .catch(err => {
+            console.log(err);
+            this.is_loading = false
+          });
+      }
     }
   }
 };
@@ -86,6 +89,10 @@ export default {
 
 .card-header .bi-bookmark {
   cursor: pointer;
+}
+
+.list-card {
+  min-height: 100vh;
 }
 
 .user-info {
