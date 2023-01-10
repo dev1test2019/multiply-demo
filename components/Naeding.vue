@@ -25,8 +25,8 @@
         </div>
       </v-card>
     </v-flex>
-    <v-card v-intersect="infiniteScrolling"></v-card>
-    <div v-if="is_loading" class="loading-icon">
+    <v-card v-if="active_infinity_scroll" v-intersect="infiniteScrolling"></v-card>
+    <div v-if="loading" class="loading-icon">
       <b-icon icon="arrow-clockwise" animation="spin-pulse" font-scale="4"></b-icon>
     </div>
   </div>
@@ -40,10 +40,10 @@ export default {
   data() {
     return {
       base_url: "http://naeding.com:444",
-      FetchData: [],
       Naeding: [],
       page: 1,
-      is_loading: true
+      loading: false,
+      active_infinity_scroll: false
     };
   },
   computed: {
@@ -52,27 +52,25 @@ export default {
     }
   },
   created() {
-    this.fetchData();
+    this.infiniteScrolling();
   },
   methods: {
-    async fetchData() {
-      const response = await axios.get(this.url);
-      this.Naeding = response.data.page.data;
-      this.is_loading = false
-    },
     infiniteScrolling(entries, observer, isIntersecting) {
-      this.is_loading = true
-      this.page++;
+      this.loading = true
       axios
         .get(this.url)
         .then(response => {
           let result = response.data.page.data
           result.forEach(item => this.Naeding.push(item));
-          this.is_loading = false
+          this.loading = false
+          if (this.page == 1) {
+            this.active_infinity_scroll = true
+          }
+          this.page++;
         })
         .catch(err => {
           console.log(err);
-          this.is_loading = false
+          this.loading = false
         });
     }
   }
