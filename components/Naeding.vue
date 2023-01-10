@@ -1,5 +1,5 @@
 <template>
-  <div class="list-card">
+  <div>
     <v-flex v-for="(item, index) in Naeding" :key="index" class="main-card">
       <v-card>
         <div class="card-header">
@@ -58,17 +58,18 @@ export default {
       const response = await axios.get(this.url);
       this.Naeding = response.data.page.data;
       this.is_loading = false
+      this.page++;
     },
     infiniteScrolling(entries, observer, isIntersecting) {
-      if (isIntersecting) {
+      if (isIntersecting && this.page > 1) {
         this.is_loading = true
-        this.page++;
         axios
           .get(this.url)
           .then(response => {
             let result = response.data.page.data
             result.forEach(item => this.Naeding.push(item));
             this.is_loading = false
+            this.page++;
           })
           .catch(err => {
             console.log(err);
@@ -89,10 +90,6 @@ export default {
 
 .card-header .bi-bookmark {
   cursor: pointer;
-}
-
-.list-card {
-  min-height: 100vh;
 }
 
 .user-info {
