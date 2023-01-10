@@ -1,7 +1,5 @@
 module.exports = {
-  /*
-  ** Headers of the page
-  */
+
   head: {
     title: 'nuxt-demo',
     meta: [
@@ -13,26 +11,20 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Customize the progress bar color
-  */
-  loading: { color: '#3B8070' },
-  /*
-  ** Build configuration
-  */
-  buildModules: [
-    // Simple usage
-    '@nuxtjs/vuetify',
 
-    // With options
-    ['@nuxtjs/vuetify', { /* module options */ }]
+  loading: { color: '#3B8070' },
+ 
+  buildModules: [
+    '@nuxtjs/vuetify',
+    '@nuxtjs/moment',
   ],
-  modules: ['@nuxtjs/axios', 'bootstrap-vue/nuxt'],
-  /*
-   ** Nuxt.js modules
-   ** Doc: https://nuxtjs.org/guide/modules
-   */
-   bootstrapVue: {
+
+  modules: [
+    '@nuxtjs/axios',
+    'bootstrap-vue/nuxt'
+  ],
+
+  bootstrapVue: {
     icons: true,
     componentPlugins: [
       'LayoutPlugin',
