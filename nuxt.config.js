@@ -32,7 +32,19 @@ module.exports = {
    ** Nuxt.js modules
    ** Doc: https://nuxtjs.org/guide/modules
    */
-
+   bootstrapVue: {
+    icons: true,
+    componentPlugins: [
+      'LayoutPlugin',
+      'FormPlugin',
+      'FormCheckboxPlugin',
+      'FormInputPlugin',
+      'FormRadioPlugin',
+      'ToastPlugin',
+      'ModalPlugin'
+    ],
+    directivePlugins: ['VBPopoverPlugin', 'VBTooltipPlugin', 'VBScrollspyPlugin']
+  },
 
   build: {
     extend(config, { isDev, isClient }) {

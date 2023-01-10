@@ -3,16 +3,16 @@
     <v-flex v-for="(item, index) in Naeding" :key="index" class="main-card">
       <div class="card-header">
         <div class="user-info">
-          <img :src="item.user.profile_image_url" alt="">
+          <img :src="base_url + item.user.profile_image_url" alt="">
           <div class="name">{{ item?.user.name }}</div>
           <div class="time">{{ item?.user.created_at }}</div>
         </div>
-        <div class="bookmark"></div>
+        <b-icon icon="bookmark"></b-icon>
       </div>
       <div class="card-body">
         <div class="content">{{ item.body }}</div>
         <div class="image-container" v-if="item.image_count > 0">
-          <img v-for="(image, img_index) in item.images" :key="img_index" :src="image.image_url" alt="">
+          <img v-for="(image, img_index) in item.images" :key="img_index" :src="base_url + image.image_url" alt="">
 
         </div>
       </div>
@@ -30,13 +30,15 @@ export default {
   name: "Naeding",
   data() {
     return {
+      base_url: "http://naeding.com:444",
+      FetchData: [],
       Naeding: [],
-      page: 0
+      page: 1
     };
   },
   computed: {
     url() {
-      return "http://naeding.com:444/api/story?page=" + this.page;
+      return this.base_url + "/api/story?page=" + this.page;
     }
   },
   created() {
@@ -69,5 +71,37 @@ export default {
 <style scoped>
 .theme--light.v-card {
   background-color: #f5f5f5;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header .bi-bookmark {
+  cursor: pointer;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info .name {
+  margin: 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.image-container img {
+  width: 100%;
 }
 </style>
