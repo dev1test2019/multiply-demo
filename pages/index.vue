@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container class="main-app">
     <!-- header  -->
     <div class="header">
       <v-container fluid grid-list-lg>
@@ -42,11 +42,12 @@
           <p>MY</p>
         </div>
       </v-container>
+      <div class="btn-create">
+        <b-icon icon="pencil"></b-icon>
+      </div>
     </div>
-    <div class="btn-create">
-      <b-icon icon="pencil"></b-icon>
-    </div>
-  </div>
+
+  </v-container>
 </template>
 
 <script>
@@ -58,10 +59,17 @@ export default {
 </script>
 
 <style scoped>
+.main-app {
+  border: solid 1px #dfdfdf;
+  padding: 0;
+  max-width: 375px;
+}
+
 .header,
 .footer {
   position: fixed;
   box-shadow: 0px 0px 1px 1px #d2d2d2;
+  max-width: 373px;
 }
 
 .header {
@@ -126,7 +134,7 @@ export default {
 }
 
 .btn-create {
-  position: fixed;
+  position: absolute;
   bottom: 90px;
   right: 20px;
   font-size: 22px;
