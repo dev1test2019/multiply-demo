@@ -34,6 +34,7 @@
 
 <script>
 import axios from "axios";
+import "@/assets/css/naeding.css";
 
 export default {
   name: "Naeding",
@@ -80,71 +81,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.card-header .bi-bookmark {
-  cursor: pointer;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-}
-
-.user-info img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.user-info .name {
-  margin: 0 8px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.image-container img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.loading-icon {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-  width: 100%;
-}
-
-.main-card {
-  margin: 20px 0;
-}
-
-.card-footer {
-  display: flex;
-  align-items: center;
-}
-
-.card-footer .like {
-  margin: 0 8px;
-}
-
-.card-footer .b-icon {
-  cursor: pointer;
-}
-
-.content-title {
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.content-body {
-  margin-bottom: 8px;
-}
-</style>
