@@ -42,7 +42,9 @@
           <p>MY</p>
         </div>
       </v-container>
-
+    </div>
+    <div class="btn-create">
+      <b-icon icon="pencil"></b-icon>
     </div>
   </div>
 </template>
@@ -121,5 +123,21 @@ export default {
 .search-bar .input-group-text {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+}
+
+.btn-create {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  font-size: 22px;
+  background: #ffcc03;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0px 0px 4px 1px #9d8b8b;
 }
 </style>
